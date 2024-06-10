@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="题目传送门 前言 这是一个不会写带修莫队所以分块乱搞的蒟蒻。 前置芝士 分块">
+    <meta name="description" content="题目传送门 前言 这是一个不会写带修莫队所以分块乱搞的蒟蒻。 前置芝士 分块">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【题解】P2464郁闷的小J">
 <meta property="og:url" content="http://example.com/2022/08/11/P2464%E9%83%81%E9%97%B7%E7%9A%84%E5%B0%8FJ/index.html">
 <meta property="og:site_name" content="wcy&#39;s blog">
-<meta property="og:description" content="题目传送门 前言 这是一个不会写带修莫队所以分块乱搞的蒟蒻。 前置芝士 分块">
+<meta property="og:description" content="题目传送门 前言 这是一个不会写带修莫队所以分块乱搞的蒟蒻。 前置芝士 分块">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-11T06:57:22.000Z">
 <meta property="article:modified_time" content="2022-08-11T07:08:19.721Z">
@@ -241,23 +241,13 @@
 <p>分块</p>
 <span id="more"></span>
 <h2 id="分析">分析</h2>
-<p>首先看到这个 <span class="math inline">\(2^{31}-1\)</span>
-的值域，肯定要离散化，离散化后考虑对原序列分块，块长为 <span
-class="math inline">\(\sqrt{n}\)</span>。</p>
-<p>我们用 <span class="math inline">\(cnt[i][x]\)</span> 表示第 <span
-class="math inline">\(i\)</span> 块中 <span
-class="math inline">\(x\)</span> 的出现次数。</p>
+<p>首先看到这个 <span class="math inline">\(2^{31}-1\)</span> 的值域，肯定要离散化，离散化后考虑对原序列分块，块长为 <span class="math inline">\(\sqrt{n}\)</span>。</p>
+<p>我们用 <span class="math inline">\(cnt[i][x]\)</span> 表示第 <span class="math inline">\(i\)</span> 块中 <span class="math inline">\(x\)</span> 的出现次数。</p>
 <p>对于每个修改操作，我们将当前块中原数出现次数减一，新数出现次数加一，最后在原序列中修改即可。</p>
 <p>对于每个查询操作，我们分两种情况考虑:</p>
 <ol type="1">
-<li>若 <span class="math inline">\(l\)</span> 和 <span
-class="math inline">\(r\)</span>
-在同一块中，那么我们直接扫描暴力得出答案。</li>
-<li>若 <span class="math inline">\(l\)</span> 和 <span
-class="math inline">\(r\)</span> 在不同块中，那么我们对 <span
-class="math inline">\(l\)</span> 和 <span
-class="math inline">\(r\)</span> 所在块分别暴力统计，用维护的 <span
-class="math inline">\(cnt\)</span> 数组统计中间块答案即可。</li>
+<li>若 <span class="math inline">\(l\)</span> 和 <span class="math inline">\(r\)</span> 在同一块中，那么我们直接扫描暴力得出答案。</li>
+<li>若 <span class="math inline">\(l\)</span> 和 <span class="math inline">\(r\)</span> 在不同块中，那么我们对 <span class="math inline">\(l\)</span> 和 <span class="math inline">\(r\)</span> 所在块分别暴力统计，用维护的 <span class="math inline">\(cnt\)</span> 数组统计中间块答案即可。</li>
 </ol>
 <p>时间复杂度 <span class="math inline">\(O(n\sqrt{n})\)</span>。</p>
 <h2 id="代码">代码</h2>

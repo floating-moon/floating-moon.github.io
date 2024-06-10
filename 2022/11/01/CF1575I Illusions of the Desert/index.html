@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="题目传送门 前言 这个菜狗不知道 \(\max(|a_x-a_y|,|a_x+a_y|) &#x3D; |a_x|+|a_y|\)，所以写了一个题解中都没有的巨大难写的线段树做法。 前置芝士 树链剖分，线段树。">
+    <meta name="description" content="题目传送门 前言 这个菜狗不知道 \(\max(|a_x-a_y|,|a_x+a_y|) &#x3D; |a_x|+|a_y|\)，所以写了一个题解中都没有的巨大难写的线段树做法。 前置芝士 树链剖分，线段树。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【题解】CF1575I Illusions of the Desert">
 <meta property="og:url" content="http://example.com/2022/11/01/CF1575I%20Illusions%20of%20the%20Desert/index.html">
 <meta property="og:site_name" content="wcy&#39;s blog">
-<meta property="og:description" content="题目传送门 前言 这个菜狗不知道 \(\max(|a_x-a_y|,|a_x+a_y|) &#x3D; |a_x|+|a_y|\)，所以写了一个题解中都没有的巨大难写的线段树做法。 前置芝士 树链剖分，线段树。">
+<meta property="og:description" content="题目传送门 前言 这个菜狗不知道 \(\max(|a_x-a_y|,|a_x+a_y|) &#x3D; |a_x|+|a_y|\)，所以写了一个题解中都没有的巨大难写的线段树做法。 前置芝士 树链剖分，线段树。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-01T06:56:51.000Z">
 <meta property="article:modified_time" content="2022-11-01T07:10:20.910Z">
@@ -237,20 +237,15 @@
     <div class="post-body" itemprop="articleBody">
         <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1575I">题目传送门</a></p>
 <h2 id="前言">前言</h2>
-<p>这个菜狗不知道 <span class="math inline">\(\max(|a_x-a_y|,|a_x+a_y|)
-=
-|a_x|+|a_y|\)</span>，所以写了一个题解中都没有的巨大难写的线段树做法。</p>
+<p>这个菜狗不知道 <span class="math inline">\(\max(|a_x-a_y|,|a_x+a_y|) = |a_x|+|a_y|\)</span>，所以写了一个题解中都没有的巨大难写的线段树做法。</p>
 <h3 id="前置芝士">前置芝士</h3>
 <p>树链剖分，线段树。</p>
 <span id="more"></span>
 <h2 id="分析">分析</h2>
-<p>用树链剖分转化为区间问题之后，我们就把问题转化为了求这样一个式子
-<span class="math display">\[
+<p>用树链剖分转化为区间问题之后，我们就把问题转化为了求这样一个式子 <span class="math display">\[
 \sum_{i=l + 1}^r \max(|a_i-a_{i-1}|,|a_i+a_{i-1}|)
 \]</span> 并且支持单点修改。</p>
-<p>考虑线段树，我们维护 <span class="math inline">\(3\)</span> 个值
-<span class="math inline">\(la, ra,
-sum\)</span>，分别表示当前区间的左端点，右端点和答案。依照定义可以这样从子节点转移给父节点。</p>
+<p>考虑线段树，我们维护 <span class="math inline">\(3\)</span> 个值 <span class="math inline">\(la, ra, sum\)</span>，分别表示当前区间的左端点，右端点和答案。依照定义可以这样从子节点转移给父节点。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">pushup</span><span class="params">(<span class="type">int</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    t[p].la = t[p &lt;&lt; <span class="number">1</span>].la;</span><br><span class="line">    t[p].ra = t[p &lt;&lt; <span class="number">1</span> | <span class="number">1</span>].ra;</span><br><span class="line">    t[p].sum = t[p &lt;&lt; <span class="number">1</span>].sum + t[p &lt;&lt; <span class="number">1</span> | <span class="number">1</span>].sum + <span class="built_in">max</span>(<span class="built_in">abs</span>(t[p &lt;&lt; <span class="number">1</span>].ra - t[p &lt;&lt; <span class="number">1</span> | <span class="number">1</span>].la), <span class="built_in">abs</span>(t[p &lt;&lt; <span class="number">1</span>].ra + t[p &lt;&lt; <span class="number">1</span> | <span class="number">1</span>].la));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后查询的时候就把左右区间的答案全部合并起来，树上查询也如法炮制，那么我们就用一种巨大难写的线段树通过了本题。</p>
 <h2 id="代码">代码</h2>

@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="题目传送门 前言 暑假的一道集训题目，今天想起来补一发题解。 前置芝士 网络流">
+    <meta name="description" content="题目传送门 前言 暑假的一道集训题目，今天想起来补一发题解。 前置芝士 网络流">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【题解】CF498C Array and Operations">
 <meta property="og:url" content="http://example.com/2022/09/15/CF498C%20Array%20and%20Operations/index.html">
 <meta property="og:site_name" content="wcy&#39;s blog">
-<meta property="og:description" content="题目传送门 前言 暑假的一道集训题目，今天想起来补一发题解。 前置芝士 网络流">
+<meta property="og:description" content="题目传送门 前言 暑假的一道集训题目，今天想起来补一发题解。 前置芝士 网络流">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-15T11:39:40.000Z">
 <meta property="article:modified_time" content="2022-09-15T11:56:56.030Z">
@@ -246,12 +246,9 @@
 <p>首先我们很容易发现要使操作次数最多，每次除的肯定是一个质因数，所以我们预处理出每个数的质因数以及每个因数的指数。</p>
 <p>然后我们按如下方式连边:</p>
 <ol type="1">
-<li>将序列中的每个下标拆成 <span class="math inline">\(x\)</span>
-个点，其中 <span class="math inline">\(x\)</span>
-为这个数不同的质因数个数。</li>
+<li>将序列中的每个下标拆成 <span class="math inline">\(x\)</span> 个点，其中 <span class="math inline">\(x\)</span> 为这个数不同的质因数个数。</li>
 <li>按下标奇偶分组，然后对每个点分别向源点/汇点连容量为这个质因数指数的边。</li>
-<li>对于每一个组合，如果这两个数有公共的质因数，就将这两个质因数代表的点连上容量为
-<span class="math inline">\(inf\)</span> 的边。</li>
+<li>对于每一个组合，如果这两个数有公共的质因数，就将这两个质因数代表的点连上容量为 <span class="math inline">\(inf\)</span> 的边。</li>
 </ol>
 <p>建完图跑最大流即可。</p>
 <p>具体实现见代码。</p>
