@@ -116,7 +116,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#cf914e"><span class="nav-number">1.</span> <span class="nav-text">CF914E</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#arc126c"><span class="nav-number">2.</span> <span class="nav-text">ARC126C</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lg3722"><span class="nav-number">3.</span> <span class="nav-text">LG3722</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cf1681e"><span class="nav-number">4.</span> <span class="nav-text">CF1681E</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lg9481"><span class="nav-number">5.</span> <span class="nav-text">LG9481</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cf1777f"><span class="nav-number">6.</span> <span class="nav-text">CF1777F</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CF914E"><span class="nav-number">1.</span> <span class="nav-text">CF914E</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARC126C"><span class="nav-number">2.</span> <span class="nav-text">ARC126C</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LG3722"><span class="nav-number">3.</span> <span class="nav-text">LG3722</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CF1681E"><span class="nav-number">4.</span> <span class="nav-text">CF1681E</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LG9481"><span class="nav-number">5.</span> <span class="nav-text">LG9481</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CF1777F"><span class="nav-number">6.</span> <span class="nav-text">CF1777F</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -238,32 +238,26 @@
 <p>也无法用言语形容眼中的你</p>
 </blockquote>
 <span id="more"></span>
-<h2 id="cf914e">CF914E</h2>
-<p>考虑淀粉质，设 <span class="math inline">\(r\)</span> 为当前分治中心，重排为回文相当于至多一个奇数，所以可以想到状态压缩后维护路径异或和，再用桶计数，统计每个点答案用树上差分，注意分治中心路径数单独计算。</p>
+<h2 id="CF914E"><a href="#CF914E" class="headerlink" title="CF914E"></a>CF914E</h2><p>考虑淀粉质，设 $r$ 为当前分治中心，重排为回文相当于至多一个奇数，所以可以想到状态压缩后维护路径异或和，再用桶计数，统计每个点答案用树上差分，注意分治中心路径数单独计算。</p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/914/submission/223100114">Code</a></p>
-<h2 id="arc126c">ARC126C</h2>
-<p>首先考虑 <span class="math inline">\(k\)</span> 很大的情况，这时候我们显然是把所有数先加到最大值然后再一轮一轮加，这个直接算即可。</p>
-<p>剩下的情况不难发现有 <span class="math inline">\(\gcd \le \max\)</span>，于是我们可以枚举最终的 <span class="math inline">\(\gcd\)</span>，这样我们就知道每个数至少被加到多少，可以在值域上做前缀和维护，最后看操作数是否 <span class="math inline">\(\le k\)</span> 即可。</p>
+<h2 id="ARC126C"><a href="#ARC126C" class="headerlink" title="ARC126C"></a>ARC126C</h2><p>首先考虑 $k$ 很大的情况，这时候我们显然是把所有数先加到最大值然后再一轮一轮加，这个直接算即可。</p>
+<p>剩下的情况不难发现有 $\gcd \le \max$，于是我们可以枚举最终的 $\gcd$，这样我们就知道每个数至少被加到多少，可以在值域上做前缀和维护，最后看操作数是否 $\le k$ 即可。</p>
 <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc126/submissions/45467559">Code</a></p>
-<h2 id="lg3722">LG3722</h2>
-<p>直接枚举 <span class="math inline">\([l, r]\)</span> 计算贡献至少是 <span class="math inline">\(O(n^2)\)</span> 的，换个角度，计算每个 <span class="math inline">\(k_i\)</span> 作为中间最大值的贡献。</p>
-<p>考虑对于每一个 <span class="math inline">\(k_i\)</span> 计算出它左边第一个比它大和它右边第一个比它大的下标 <span class="math inline">\(L_i, R_i\)</span>。</p>
-<p>不难发现 <span class="math inline">\([L_i, R_i]\)</span> 会造成 <span class="math inline">\(p_1\)</span> 的贡献。</p>
-<p>左端点在 <span class="math inline">\((L_i, i)\)</span>，右端点为 <span class="math inline">\(R_i\)</span> 会造成 <span class="math inline">\(p_2\)</span> 的贡献。</p>
-<p>左端点为 <span class="math inline">\(L_i\)</span>，右端点在 <span class="math inline">\((i, R_i)\)</span> 会造成 <span class="math inline">\(p_2\)</span> 的贡献。</p>
+<h2 id="LG3722"><a href="#LG3722" class="headerlink" title="LG3722"></a>LG3722</h2><p>直接枚举 $[l, r]$ 计算贡献至少是 $O(n^2)$ 的，换个角度，计算每个 $k_i$ 作为中间最大值的贡献。</p>
+<p>考虑对于每一个 $k_i$ 计算出它左边第一个比它大和它右边第一个比它大的下标 $L_i, R_i$。</p>
+<p>不难发现 $[L_i, R_i]$ 会造成 $p_1$ 的贡献。</p>
+<p>左端点在 $(L_i, i)$，右端点为 $R_i$ 会造成 $p_2$ 的贡献。</p>
+<p>左端点为 $L_i$，右端点在 $(i, R_i)$ 会造成 $p_2$ 的贡献。</p>
 <p>二维数点即可。</p>
 <p><a target="_blank" rel="noopener" href="https://loj.ac/s/1900661">Code</a></p>
-<h2 id="cf1681e">CF1681E</h2>
-<p>显然当两点同层时答案为曼哈顿距离。</p>
+<h2 id="CF1681E"><a href="#CF1681E" class="headerlink" title="CF1681E"></a>CF1681E</h2><p>显然当两点同层时答案为曼哈顿距离。</p>
 <p>考虑不同层时，一定是先走到了前一层的门，然后到达终点，所以我们只需考虑到每层门的最短路即可。</p>
-<p>记 <span class="math inline">\(f_{i, 0/1}\)</span> 表示到第 <span class="math inline">\(i\)</span> 层两个门的最短路长度，相邻层之间转移方程容易得到，且转移方程固定，于是可以 ddp，没有修改，倍增维护即可。</p>
+<p>记 $f_{i, 0/1}$ 表示到第 $i$ 层两个门的最短路长度，相邻层之间转移方程容易得到，且转移方程固定，于是可以 ddp，没有修改，倍增维护即可。</p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1681/submission/224164263">Code</a></p>
-<h2 id="lg9481">LG9481</h2>
-<p>考虑在 <span class="math inline">\(\text{LCA}\)</span> 处统计答案，我们记 <span class="math inline">\(x, y\)</span> 为左右子树的两个点。</p>
-<p>不难发现 <span class="math inline">\(x \to y\)</span> 可以拆成 <span class="math inline">\(x \to \text{LCA}\)</span> 和 <span class="math inline">\(\text{LCA} \to y\)</span> 两部分，前面一个部分只会走一类边，可以树形 dp 计算，后面的部分就是对子树中每个点跑最短路，一个细节是跑 <span class="math inline">\(u\)</span> 到 <span class="math inline">\(u\)</span> 子树内的最短路时可以让最短路先继承父亲的，这样就只用考虑子树内的边了。</p>
+<h2 id="LG9481"><a href="#LG9481" class="headerlink" title="LG9481"></a>LG9481</h2><p>考虑在 $\text{LCA}$ 处统计答案，我们记 $x, y$ 为左右子树的两个点。</p>
+<p>不难发现 $x \to y$ 可以拆成 $x \to \text{LCA}$ 和 $\text{LCA} \to y$ 两部分，前面一个部分只会走一类边，可以树形 dp 计算，后面的部分就是对子树中每个点跑最短路，一个细节是跑 $u$ 到 $u$ 子树内的最短路时可以让最短路先继承父亲的，这样就只用考虑子树内的边了。</p>
 <p><a target="_blank" rel="noopener" href="https://loj.ac/s/1900669">Code</a></p>
-<h2 id="cf1777f">CF1777F</h2>
-<p>考虑分治，记当前分治区间为 <span class="math inline">\([l, r]\)</span>，首先我们记 <span class="math inline">\(m\)</span> 为 <span class="math inline">\([l, r]\)</span> 中最大值位置，现在我们要求的就是 <span class="math inline">\(\max_{i \in [l, m], j \in[m, r]} \{a_m \oplus s_{i - 1} \oplus s_j\}\)</span>，其中 <span class="math inline">\(s\)</span> 为前缀异或和。我们枚举 <span class="math inline">\(i, j\)</span> 其中一个都可以用可持久化 Trie 做到 <span class="math inline">\(O(\log V)\)</span> 计算，如果我们随机枚举一半可能会被卡成 <span class="math inline">\(O(n^2\log V)\)</span> 的，在这里我们每次枚举长度较小的区间就能做到 <span class="math inline">\(O(n\log n\log V)\)</span>。</p>
+<h2 id="CF1777F"><a href="#CF1777F" class="headerlink" title="CF1777F"></a>CF1777F</h2><p>考虑分治，记当前分治区间为 $[l, r]$，首先我们记 $m$ 为 $[l, r]$ 中最大值位置，现在我们要求的就是 $\max<em>{i \in [l, m], j \in[m, r]} {a_m \oplus s</em>{i - 1} \oplus s_j}$，其中 $s$ 为前缀异或和。我们枚举 $i, j$ 其中一个都可以用可持久化 Trie 做到 $O(\log V)$ 计算，如果我们随机枚举一半可能会被卡成 $O(n^2\log V)$ 的，在这里我们每次枚举长度较小的区间就能做到 $O(n\log n\log V)$。</p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1777/submission/224307434">Code</a></p>
 
     </div>
